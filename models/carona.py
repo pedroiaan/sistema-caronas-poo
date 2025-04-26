@@ -12,8 +12,7 @@ class Carona:
         if self._vagas_ocupadas < self._vagas_totais:
             self._vagas_ocupadas += 1
             return True
-        else:
-            return False
+        return False
     
     def cancelar_reserva(self):
         if self._vagas_ocupadas >= 1:
