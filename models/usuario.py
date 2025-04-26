@@ -12,11 +12,5 @@ class Usuario:
    
    def autenticar(self, senha):
       if self._senha_hash == self.hash_senhas(senha):
-         #print("autentificação conluida")
          return True
-      else:
-         #print("senha incorreta")
-         return False
-
-#usuario = Usuario("pedro", "pedroianx8@gmail.com", "minha_senha_secreta")
-#usuario.autenticar("123") 
+      return False
