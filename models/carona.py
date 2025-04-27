@@ -1,9 +1,10 @@
 class Carona:
-    def __init__(self, origem: str, data_hora: str, vagas_totais: int = 4):
+    def __init__(self, origem: str, data: str, horario: str, vagas_totais: int = 4):
         self._vagas_totais = vagas_totais
         self._vagas_ocupadas = 0
         self.origem = origem
-        self.data_hora = data_hora
+        self.data  = data
+        self.horario = horario
 
     def vagas_disponiveis(self):
         return self._vagas_totais - self._vagas_ocupadas

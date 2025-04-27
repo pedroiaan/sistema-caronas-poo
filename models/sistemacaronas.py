@@ -22,8 +22,8 @@ class SistemaCaronas:
                 return True
         return False
 
-    def criar_carona(self, origem, data_hora):
-        nova_carona = Carona(origem, data_hora)
+    def criar_carona(self, origem, data, horario):
+        nova_carona = Carona(origem, data, horario)
         self.caronas.append(nova_carona)
     
     def listar_caronas(self):
@@ -31,5 +31,24 @@ class SistemaCaronas:
             print("Não há caronas registradas")
         else:
             for carona in self.caronas:
-                print(f"Origem: {carona.origem}, Data e Hora: {carona.data_hora}, Vagas Disponíveis: {carona.vagas_disponiveis()}")
+                print(f"Origem: {carona.origem}, Data: {carona.data}, Horario: {carona.horario}, Vagas Disponíveis: {carona.vagas_disponiveis()}")
+
+    def buscar_carona_origem(self, origem):
+        if not self.caronas:
+            print("Não há caronas registradas para esse ponto de partida")
+            return
+    
+        lista_encotradas = []
+        for carona in self.caronas:
+            if carona.origem == origem:
+                lista_encotradas.append(Carona)
+        
+        if not lista_encotradas:
+            print("Não há caronas registradas para esse ponto de partida")
+            return
+        
+        print("As caronas para esse ponto de partida são:")
+        for carona in self.caronas:
+            if origem == carona.origem:
+                print(f"No dia {carona.data}, às {carona.horario}")
 
