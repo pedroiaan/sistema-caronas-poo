@@ -52,3 +52,14 @@ class SistemaCaronas:
             if origem == carona.origem:
                 print(f"No dia {carona.data}, às {carona.horario}")
 
+        def reservar_vaga(self, origem, data, horario, email):
+            for carona in self.caronas:
+                if carona.origem == origem and carona.data == data and carona.horario == horario:
+                    return carona.reservar_vagas(email)
+                return False
+
+        def cancelar_vaga(self, origem, data, horario, email):
+            for carona in self.caronas:
+                if carona.origem == origem and carona.data == data and carona.horario == horario:
+                    return carona.cancelar_vaga(email)
+                return False
