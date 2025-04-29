@@ -7,7 +7,7 @@ class Carona:
         self.horario = horario
 
     def vagas_disponiveis(self):
-        return self._vagas_totais - self._vagas_ocupadas
+        return self._vagas_totais - len(self._passageiros)
 
     def reservar_vagas(self, email):
         if len(self._passageiros) < self._vagas_totais:

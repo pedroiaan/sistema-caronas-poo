@@ -1,5 +1,5 @@
-from carona import Carona
-from usuario import Usuario
+from .carona import Carona
+from .usuario import Usuario
 
 class SistemaCaronas:
     def __init__(self):
@@ -52,7 +52,7 @@ class SistemaCaronas:
             if origem == carona.origem:
                 print(f"No dia {carona.data}, às {carona.horario}")
 
-        def reservar_vaga(self, origem, data, horario, email):
+        def reservar_vagas(self, origem, data, horario, email):
             for carona in self.caronas:
                 if carona.origem == origem and carona.data == data and carona.horario == horario:
                     return carona.reservar_vagas(email)
