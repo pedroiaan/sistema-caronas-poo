@@ -20,4 +20,10 @@ class Carona:
             self._passageiros.remove(email)
             return True
         return False
+    
+    def cancelar_vaga(self, email):
+        if email in self._passageiros:
+            self._passageiros.remove(email)
+            return True
+        return False
         
