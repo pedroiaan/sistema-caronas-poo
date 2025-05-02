@@ -1,9 +1,9 @@
+
 # 🚗 Sistema de Caronas para Universitários - FGA
 
-Este é um projeto de terminal desenvolvido em **Python com Programação Orientada a Objetos (POO)**, que simula uma rede de caronas voltada a estudantes da FGA (Faculdade do Gama - UnB).
+Um sistema simples de caronas com interface gráfica usando **Python** e **Tkinter**.
 
 ---
-
 ## 🎯 Objetivo
 
 Oferecer uma estrutura básica para que estudantes possam:
@@ -12,39 +12,75 @@ Oferecer uma estrutura básica para que estudantes possam:
 - Consultar caronas disponíveis
 - Reservar e cancelar vagas em caronas
 
----
+## ✅ Funcionalidades
 
-## 🧱 Estrutura do Projeto
-
-O sistema é composto por três classes principais:
-
-### 🔐 `Usuario`
-- Armazena dados do usuário (nome, e-mail e senha)
-- Realiza autenticação de senha com hash seguro
-
-### 🚙 `Carona`
-- Representa uma carona com origem, horário e controle de vagas
-- Permite reservar e cancelar vagas
-
-### 🧠 `SistemaCaronas`
-- Gerencia os usuários e caronas
-- Controla a lógica de cadastro, login, criação e reserva de caronas
+- ✅ Registro e login de usuários
+- ✅ Criação de caronas (origem, data, horário)
+- ✅ Reserva e cancelamento de vagas
+- ✅ Listagem de caronas disponíveis
+- ✅ Busca de caronas por origem
+- ✅ Interface gráfica amigável com **Tkinter**
 
 ---
 
-## 📌 Regras do Sistema
+## 🗂 Estrutura do Projeto
 
-- O destino de todas as caronas é **sempre a FGA**
-- Cada carona tem **4 vagas disponíveis por padrão**
-- Um usuário pode **oferecer e receber caronas**
-- Senhas são armazenadas com **hash SHA-256** (sem bibliotecas externas)
-- Não é utilizada persistência de dados (sem JSON, banco de dados, etc.)
+```plaintext
+projeto-caronas/
+├── main.py                  # Interface gráfica (Tkinter)
+├── README.md                # Arquivo de documentação
+└── models/
+    ├── sistemacaronas.py    # Lógica principal do sistema de caronas
+    └── carona.py            # Classe que representa uma carona
+```
 
 ---
 
 ## 🚀 Como Executar
 
-1. Clone este repositório
-2. Execute o arquivo principal com:
-   ```bash
-   python app.py
+1. Instale o Python 3.10 ou superior.
+2. Clone este repositório ou baixe os arquivos.
+3. Execute o programa principal:
+
+```bash
+python main.py
+```
+
+---
+
+## 🖼 Interface
+
+### Tela Inicial
+
+- [ ] Login
+- [ ] Registro
+
+### Menu Principal
+
+- [ ] Criar Carona
+- [ ] Reservar Vaga
+- [ ] Listar Caronas
+- [ ] Buscar por Origem
+- [ ] Cancelar Reserva
+- [ ] Voltar (logout)
+
+---
+
+## 📦 Requisitos
+
+- Python 3.10+
+- Biblioteca `tkinter` (já incluída no Python)
+
+---
+
+## 👤 Autor
+
+**Pedro**  
+Estudante de Engenharia de Software - FGA  
+Projeto acadêmico de prática com Python, OO e GUI.
+
+---
+
+## 📄 Licença
+
+Este projeto é livre para fins acadêmicos e educacionais.
