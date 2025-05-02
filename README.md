@@ -1,9 +1,9 @@
-
 # 🚗 Sistema de Caronas para Universitários - FGA
 
-Um sistema simples de caronas com interface gráfica usando **Python** e **Tkinter**.
+Um sistema simples de caronas com interface gráfica usando **Python** e **[CustomTkinter](https://github.com/TomSchimansky/CustomTkinter)**.
 
 ---
+
 ## 🎯 Objetivo
 
 Oferecer uma estrutura básica para que estudantes possam:
@@ -12,6 +12,8 @@ Oferecer uma estrutura básica para que estudantes possam:
 - Consultar caronas disponíveis
 - Reservar e cancelar vagas em caronas
 
+---
+
 ## ✅ Funcionalidades
 
 - ✅ Registro e login de usuários
@@ -19,15 +21,15 @@ Oferecer uma estrutura básica para que estudantes possam:
 - ✅ Reserva e cancelamento de vagas
 - ✅ Listagem de caronas disponíveis
 - ✅ Busca de caronas por origem
-- ✅ Interface gráfica amigável com **Tkinter**
+- ✅ Interface gráfica moderna com **CustomTkinter**
 
 ---
 
 ## 🗂 Estrutura do Projeto
 
-```plaintext
+```
 projeto-caronas/
-├── main.py                  # Interface gráfica (Tkinter)
+├── main.py                  # Interface gráfica (CustomTkinter)
 ├── README.md                # Arquivo de documentação
 └── models/
     ├── sistemacaronas.py    # Lógica principal do sistema de caronas
@@ -40,7 +42,13 @@ projeto-caronas/
 
 1. Instale o Python 3.10 ou superior.
 2. Clone este repositório ou baixe os arquivos.
-3. Execute o programa principal:
+3. Instale a biblioteca necessária:
+
+```bash
+pip install customtkinter
+```
+
+4. Execute o programa principal:
 
 ```bash
 python main.py
@@ -52,24 +60,24 @@ python main.py
 
 ### Tela Inicial
 
-- [ ] Login
-- [ ] Registro
+- [x] Login
+- [x] Registro
 
 ### Menu Principal
 
-- [ ] Criar Carona
-- [ ] Reservar Vaga
-- [ ] Listar Caronas
-- [ ] Buscar por Origem
-- [ ] Cancelar Reserva
-- [ ] Voltar (logout)
+- [x] Criar Carona
+- [x] Reservar Vaga
+- [x] Listar Caronas
+- [x] Buscar por Origem
+- [x] Cancelar Reserva
+- [x] Voltar (logout)
 
 ---
 
 ## 📦 Requisitos
 
 - Python 3.10+
-- Biblioteca `tkinter` (já incluída no Python)
+- Biblioteca [`customtkinter`](https://github.com/TomSchimansky/CustomTkinter)
 
 ---
 
@@ -77,7 +85,7 @@ python main.py
 
 **Pedro**  
 Estudante de Engenharia de Software - FGA  
-Projeto acadêmico de prática com Python, OO e GUI.
+Projeto acadêmico de prática com Python, POO e GUI.
 
 ---
 
