@@ -1,6 +1,9 @@
-import tkinter as tk
+from customtkinter import *
 from tkinter import messagebox, simpledialog
 from models.sistemacaronas import SistemaCaronas
+
+set_appearance_mode("dark")
+set_default_color_theme("blue")
 
 sistema = SistemaCaronas()
 
@@ -8,9 +11,10 @@ class LoginApp:
     def __init__(self, root):
         self.root = root
         self.root.title("Sistema de Caronas - Login")
+        self.root.geometry("400x500")
 
-        self.frame = tk.Frame(root, padx=20, pady=20)
-        self.frame.pack()
+        self.frame = CTkFrame(root, corner_radius=20)
+        self.frame.pack(padx=20, pady=20, fill="both", expand=True)
 
         self.exibir_opcoes_iniciais()
 
@@ -18,17 +22,12 @@ class LoginApp:
         for widget in self.frame.winfo_children():
             widget.destroy()
 
-        self.titulo_label = tk.Label(self.frame, text="Bem-vindo ao sistema de caronas da FGA", font=("Arial", 14))
-        self.titulo_label.pack(pady=10)
+        CTkLabel(self.frame, text="Bem-vindo ao sistema de caronas da FGA", font=CTkFont(size=16, weight="bold")).pack(pady=10)
 
-        self.opcao = tk.StringVar()
-        self.opcao.set("")
+        self.opcao = StringVar(value="")
 
-        self.login_button = tk.Button(self.frame, text="Login", command=lambda: self.exibir_formulario("login"))
-        self.login_button.pack(pady=5)
-
-        self.registro_button = tk.Button(self.frame, text="Registrar", command=lambda: self.exibir_formulario("registrar"))
-        self.registro_button.pack(pady=5)
+        CTkButton(self.frame, text="Login", command=lambda: self.exibir_formulario("login")).pack(pady=10)
+        CTkButton(self.frame, text="Registrar", command=lambda: self.exibir_formulario("registrar")).pack(pady=10)
 
     def exibir_formulario(self, tipo):
         for widget in self.frame.winfo_children():
@@ -37,24 +36,21 @@ class LoginApp:
         self.opcao.set(tipo)
 
         if tipo == "registrar":
-            tk.Label(self.frame, text="Nome:").pack()
-            self.nome_entry = tk.Entry(self.frame)
-            self.nome_entry.pack()
+            CTkLabel(self.frame, text="Nome:").pack()
+            self.nome_entry = CTkEntry(self.frame)
+            self.nome_entry.pack(pady=5)
 
-        tk.Label(self.frame, text="Email:").pack()
-        self.email_entry = tk.Entry(self.frame)
-        self.email_entry.pack()
+        CTkLabel(self.frame, text="Email:").pack()
+        self.email_entry = CTkEntry(self.frame)
+        self.email_entry.pack(pady=5)
 
-        tk.Label(self.frame, text="Senha:").pack()
-        self.senha_entry = tk.Entry(self.frame, show="*")
-        self.senha_entry.pack()
+        CTkLabel(self.frame, text="Senha:").pack()
+        self.senha_entry = CTkEntry(self.frame, show="*")
+        self.senha_entry.pack(pady=5)
 
         acao_texto = "Registrar" if tipo == "registrar" else "Login"
-        self.acao_button = tk.Button(self.frame, text=acao_texto, command=self.executar_acao)
-        self.acao_button.pack(pady=10)
-
-        self.voltar_button = tk.Button(self.frame, text="Voltar", command=self.voltar_login)
-        self.voltar_button.pack(pady=5)
+        CTkButton(self.frame, text=acao_texto, command=self.executar_acao).pack(pady=10)
+        CTkButton(self.frame, text="Voltar", command=self.voltar_login).pack(pady=5)
 
     def executar_acao(self):
         if self.opcao.get() == "login":
@@ -83,19 +79,16 @@ class LoginApp:
         for widget in self.frame.winfo_children():
             widget.destroy()
 
-        tk.Label(self.frame, text="Menu do Sistema de Caronas", font=("Arial", 14)).pack(pady=10)
+        CTkLabel(self.frame, text="Menu do Sistema de Caronas", font=CTkFont(size=16, weight="bold")).pack(pady=10)
 
-        tk.Button(self.frame, text="Criar Carona", command=self.criar_carona).pack(pady=5)
-        tk.Button(self.frame, text="Reservar Vaga", command=self.reservar_vaga).pack(pady=5)
-        tk.Button(self.frame, text="Listar Caronas", command=self.listar_caronas).pack(pady=5)
-        tk.Button(self.frame, text="Buscar por Origem", command=self.buscar_por_origem).pack(pady=5)
-        tk.Button(self.frame, text="Cancelar Reserva", command=self.cancelar_reserva).pack(pady=5)
-
-        # Adicionando o botão "Voltar" para voltar ao login
-        tk.Button(self.frame, text="Voltar ao Login", command=self.voltar_login).pack(pady=10)
+        CTkButton(self.frame, text="Criar Carona", command=self.criar_carona).pack(pady=5)
+        CTkButton(self.frame, text="Reservar Vaga", command=self.reservar_vaga).pack(pady=5)
+        CTkButton(self.frame, text="Listar Caronas", command=self.listar_caronas).pack(pady=5)
+        CTkButton(self.frame, text="Buscar por Origem", command=self.buscar_por_origem).pack(pady=5)
+        CTkButton(self.frame, text="Cancelar Reserva", command=self.cancelar_reserva).pack(pady=5)
+        CTkButton(self.frame, text="Voltar ao Login", command=self.voltar_login).pack(pady=10)
 
     def voltar_login(self):
-        # Voltar para a tela de login
         self.exibir_opcoes_iniciais()
 
     def criar_carona(self):
@@ -143,6 +136,6 @@ class LoginApp:
 
 
 if __name__ == "__main__":
-    root = tk.Tk()
-    app = LoginApp(root)
-    root.mainloop()
+    app = CTk()
+    LoginApp(app)
+    app.mainloop()
