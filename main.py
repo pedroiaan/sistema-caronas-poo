@@ -76,6 +76,7 @@ class LoginApp:
         self.exibir_opcoes_iniciais()
 
     def abrir_menu(self):
+        
         for widget in self.frame.winfo_children():
             widget.destroy()
 
@@ -84,7 +85,7 @@ class LoginApp:
         CTkButton(self.frame, text="Criar Carona", command=self.criar_carona).pack(pady=5)
         CTkButton(self.frame, text="Reservar Vaga", command=self.reservar_vaga).pack(pady=5)
         CTkButton(self.frame, text="Listar Caronas", command=self.listar_caronas).pack(pady=5)
-        CTkButton(self.frame, text="Buscar por Origem", command=self.buscar_por_origem).pack(pady=5)
+        CTkButton(self.frame, text="Buscar por Ponto de Partida", command=self.buscar_por_origem).pack(pady=5)
         CTkButton(self.frame, text="Cancelar Reserva", command=self.cancelar_reserva).pack(pady=5)
         CTkButton(self.frame, text="Voltar ao Login", command=self.voltar_login).pack(pady=10)
 
@@ -92,14 +93,14 @@ class LoginApp:
         self.exibir_opcoes_iniciais()
 
     def criar_carona(self):
-        origem = self.input_dialog("Origem da carona:")
+        origem = self.input_dialog("Ponto de Partida da carona:")
         data = self.input_dialog("Data da carona:")
         horario = self.input_dialog("Horário da carona:")
         sistema.criar_carona(origem, data, horario)
         messagebox.showinfo("Sucesso", "Carona criada com sucesso!")
 
     def reservar_vaga(self):
-        origem = self.input_dialog("Origem da carona:")
+        origem = self.input_dialog("Ponto de Partida da carona:")
         data = self.input_dialog("Data da carona:")
         horario = self.input_dialog("Horário da carona:")
         email = self.input_dialog("Seu email:")
@@ -109,7 +110,7 @@ class LoginApp:
     def listar_caronas(self):
         caronas = sistema.listar_caronas()
         if caronas:
-            texto = "\n".join([f"Origem: {c.origem}, Data: {c.data}, Horário: {c.horario}, Vagas disponíveis: {c.vagas_disponiveis()}" for c in caronas])
+            texto = "\n".join([f"Ponto de partida: {c.origem}, Data: {c.data}, Horário: {c.horario}, Vagas disponíveis: {c.vagas_disponiveis()}" for c in caronas])
             messagebox.showinfo("Caronas", texto)
         else:
             messagebox.showinfo("Caronas", "Nenhuma carona encontrada.")
@@ -120,11 +121,11 @@ class LoginApp:
         if not caronas:
             messagebox.showinfo("Busca por Origem", "Nenhuma carona encontrada para a origem informada.")
         else:
-            texto = "\n".join([f"Origem: {c.origem}, Data: {c.data}, Horário: {c.horario}, Vagas disponíveis: {c.vagas_disponiveis()}" for c in caronas])
+            texto = "\n".join([f"Ponto de Paritda: {c.origem}, Data: {c.data}, Horário: {c.horario}, Vagas disponíveis: {c.vagas_disponiveis()}" for c in caronas])
             messagebox.showinfo("Caronas encontradas", texto)
 
     def cancelar_reserva(self):
-        origem = self.input_dialog("Origem da carona:")
+        origem = self.input_dialog("Ponto de Partida da carona:")
         data = self.input_dialog("Data da carona:")
         horario = self.input_dialog("Horário da carona:")
         email = self.input_dialog("Seu email:")
