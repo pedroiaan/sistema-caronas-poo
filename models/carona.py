@@ -1,7 +1,7 @@
 class Carona:
-    def __init__(self, origem: str, data: str, horario: str, vagas_totais: int = 4):
+    def __init__(self, origem: str, data: str, horario: str, vagas_totais: int = 4, passageiros=None):
         self._vagas_totais = vagas_totais
-        self._passageiros = []
+        self._passageiros = passageiros if passageiros is not None else []
         self.origem = origem
         self.data  = data
         self.horario = horario
@@ -27,3 +27,19 @@ class Carona:
             return True
         return False
         
+    def to_dict(self):
+        return {
+            "origem": self.origem,
+            "data": self.data,
+            "horario": self.horario,
+            "passageiros": self._passageiros
+        }
+
+    @staticmethod
+    def from_dict(dados):
+        return Carona(
+            origem=dados["origem"],
+            data=dados["data"],
+            horario=dados["horario"],
+            passageiros=dados.get("passageiros", [])
+        )

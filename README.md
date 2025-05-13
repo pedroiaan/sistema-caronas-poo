@@ -1,6 +1,6 @@
 # 🚗 Sistema de Caronas para Universitários - FGA
 
-Um sistema simples de caronas com interface gráfica usando **Python** e **[CustomTkinter](https://github.com/TomSchimansky/CustomTkinter)**.
+Um sistema simples de caronas com interface gráfica usando **Python** e **[CustomTkinter](https://github.com/TomSchimansky/CustomTkinter)** e **JSON** para persistência de dados.
 
 ---
 
@@ -22,6 +22,7 @@ Oferecer uma estrutura básica para que estudantes possam:
 - ✅ Listagem de caronas disponíveis
 - ✅ Busca de caronas por origem
 - ✅ Interface gráfica moderna com **CustomTkinter**
+- Persistir dados utilizando **JSON**, garantindo que as informações das caronas e usuários sejam mantidas entre execuções
 
 ---
 
@@ -34,6 +35,9 @@ projeto-caronas/
 └── models/
     ├── sistemacaronas.py    # Lógica principal do sistema de caronas
     └── carona.py            # Classe que representa uma carona
+└── dados/
+     ├──  banc.py            # Manipulação do arquivo JSON (carregamento e salvamento)
+     └── banco.json          # Arquivo onde os dados de usuários e caronas são armazenados
 ```
 
 ---
@@ -85,7 +89,7 @@ python main.py
 
 **Pedro**  
 Estudante de Engenharia de Software - FGA  
-Projeto acadêmico de prática com Python, POO e GUI.
+Projeto acadêmico de prática com Python, POO, manipulação de JSON e GUI.
 
 ---
 
