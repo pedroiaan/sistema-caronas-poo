@@ -13,10 +13,12 @@
     ],
     "caronas": [
         {
-            "origem": "Guará 1",
-            "data": "12:00",
-            "horario": "21:00",
-            "passageiros": []
+            "origem": "Guará",
+            "data": "20/05",
+            "horario": "12:00",
+            "passageiros": [
+                "clara@gmail.com"
+            ]
         }
     ]
 }

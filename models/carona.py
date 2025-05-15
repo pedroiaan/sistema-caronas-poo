@@ -1,3 +1,6 @@
+from banco.banc import carregar_banco, salvar_banco
+
+
 class Carona:
     def __init__(self, origem: str, data: str, horario: str, vagas_totais: int = 4, passageiros=None):
         self._vagas_totais = vagas_totais
@@ -10,18 +13,12 @@ class Carona:
         return self._vagas_totais - len(self._passageiros)
 
     def reservar_vagas(self, email):
-        if len(self._passageiros) < self._vagas_totais:
+        if len(self._passageiros) < self._vagas_totais and email not in self._passageiros:
             self._passageiros.append(email)
             return True
         return False
     
     def cancelar_reserva(self, email):
-        if email in self._passageiros:
-            self._passageiros.remove(email)
-            return True
-        return False
-    
-    def cancelar_vaga(self, email):
         if email in self._passageiros:
             self._passageiros.remove(email)
             return True

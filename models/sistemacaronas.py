@@ -30,11 +30,9 @@ class SistemaCaronas:
 
 
     def criar_carona(self, origem, data, horario):
-        nova_carona = {"origem": origem,
-            "data": data,
-            "horario": horario }
+        nova_carona = Carona(origem, data, horario)
         self.caronas.append(nova_carona)
-        salvar_banco({"usuarios": self.usuarios, "caronas": self.caronas})
+        salvar_banco({"usuarios": self.usuarios, "caronas": [c.to_dict() for c in self.caronas]})
         return True
 
     def listar_caronas(self):
@@ -47,11 +45,16 @@ class SistemaCaronas:
     def reservar_vagas(self, origem, data, horario, email):
         for carona in self.caronas:
             if carona.origem == origem and carona.data == data and carona.horario == horario:
-                return carona.reservar_vagas(email)
+                if carona.reservar_vagas(email):
+                    salvar_banco({"usuarios": self.usuarios, "caronas": [c.to_dict() for c in self.caronas]})
+                    return True
         return False
+    
 
     def cancelar_vaga(self, origem, data, horario, email):
         for carona in self.caronas:
             if carona.origem == origem and carona.data == data and carona.horario == horario:
-                return carona.cancelar_vaga(email)
+                if carona.cancelar_reserva(email):
+                    salvar_banco({"usuarios": self.usuarios, "caronas": [c.to_dict() for c in self.caronas]})
+                    return True
         return False
