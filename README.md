@@ -22,7 +22,7 @@ Oferecer uma estrutura básica para que estudantes possam:
 - ✅ Listagem de caronas disponíveis
 - ✅ Busca de caronas por origem
 - ✅ Interface gráfica moderna com **CustomTkinter**
-- Persistir dados utilizando **JSON**, garantindo que as informações das caronas e usuários sejam mantidas entre execuções
+- ✅ Persistir dados utilizando **JSON**, garantindo que as informações das caronas e usuários sejam mantidas entre execuções
 
 ---
 
@@ -35,7 +35,7 @@ projeto-caronas/
 └── models/
     ├── sistemacaronas.py    # Lógica principal do sistema de caronas
     └── carona.py            # Classe que representa uma carona
-└── dados/
+└── banco/
      ├──  banc.py            # Manipulação do arquivo JSON (carregamento e salvamento)
      └── banco.json          # Arquivo onde os dados de usuários e caronas são armazenados
 ```
