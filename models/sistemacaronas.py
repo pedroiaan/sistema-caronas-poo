@@ -1,60 +1,69 @@
+
 from .carona import Carona
-from .usuario import Usuario
+from .usuario import Usuario 
 from banco.banc import carregar_banco, salvar_banco
 
 class SistemaCaronas:
     def __init__(self):
         banco = carregar_banco()
-        self.usuarios = banco["usuarios"]
-        self.caronas = [Carona.from_dict(c) for c in banco["caronas"]]
+        self.usuarios = [Usuario.from_dict(u_data) for u_data in banco.get("usuarios", [])]
+        self.caronas = [Carona.from_dict(c_data) for c_data in banco.get("caronas", [])]
     
-    def cadastrar_usuario(self, nome, email, senha):
-        if any(usuario["_email"] == email for usuario in self.usuarios):
-            return False
-        novo_usuario = {
-            "_nome": nome,
-            "_email": email,
-            "_senha_hash": Usuario(nome, email, senha).hash_senhas(senha)
+    def _salvar_dados(self):
+        dados_para_salvar = {
+            "usuarios": [u.to_dict() for u in self.usuarios], 
+            "caronas": [c.to_dict() for c in self.caronas]   
         }
+        salvar_banco(dados_para_salvar)
+
+    def cadastrar_usuario(self, nome: str, email: str, senha_plana: str) -> bool:
+        if any(usuario.email == email for usuario in self.usuarios): 
+            return False
+        
+        novo_usuario = Usuario(nome, email, senha_plana) 
         self.usuarios.append(novo_usuario)
-        salvar_banco({"usuarios": self.usuarios, "caronas": [c.to_dict() for c in self.caronas]})
+        self._salvar_dados() 
         return True
     
-    def login_usuario(self, email, senha):
-        for usuario_dict in self.usuarios:
-            if usuario_dict["_email"] == email:
-                senha_hash = Usuario("", "", "").hash_senhas(senha)
-                if senha_hash == usuario_dict["_senha_hash"]:
+    def login_usuario(self, email: str, senha_plana: str) -> bool:
+        for usuario in self.usuarios: 
+            if usuario.email == email:
+                if usuario.verificar_senha(senha_plana): 
                     return True
+                else:
+                    return False
         return False
 
-
-    def criar_carona(self, origem, data, horario):
+    def criar_carona(self, origem: str, data: str, horario: str) -> bool:
         nova_carona = Carona(origem, data, horario)
         self.caronas.append(nova_carona)
-        salvar_banco({"usuarios": self.usuarios, "caronas": [c.to_dict() for c in self.caronas]})
+        self._salvar_dados()
         return True
 
-    def listar_caronas(self):
+    def listar_caronas(self) -> list[Carona]:
         return self.caronas
         
-    def buscar_carona_origem(self, origem):
-        caronas_encontradas = [carona for carona in self.caronas if carona.origem.lower() == origem.lower()]
+    def buscar_carona_origem(self, origem: str) -> list[Carona]:
+        caronas_encontradas = [
+            carona for carona in self.caronas if carona.origem.lower() == origem.lower()
+        ]
         return caronas_encontradas
     
-    def reservar_vagas(self, origem, data, horario, email):
+    def reservar_vagas(self, origem: str, data: str, horario: str, email_passageiro: str) -> bool:
+        if not any(u.email == email_passageiro for u in self.usuarios):
+            return False
+
         for carona in self.caronas:
             if carona.origem == origem and carona.data == data and carona.horario == horario:
-                if carona.reservar_vagas(email):
-                    salvar_banco({"usuarios": self.usuarios, "caronas": [c.to_dict() for c in self.caronas]})
+                if carona.reservar_vagas(email_passageiro): 
+                    self._salvar_dados()
                     return True
         return False
     
-
-    def cancelar_vaga(self, origem, data, horario, email):
+    def cancelar_vaga(self, origem: str, data: str, horario: str, email_passageiro: str) -> bool:
         for carona in self.caronas:
             if carona.origem == origem and carona.data == data and carona.horario == horario:
-                if carona.cancelar_reserva(email):
-                    salvar_banco({"usuarios": self.usuarios, "caronas": [c.to_dict() for c in self.caronas]})
+                if carona.cancelar_reserva(email_passageiro):
+                    self._salvar_dados()
                     return True
         return False

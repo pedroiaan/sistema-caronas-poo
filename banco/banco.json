@@ -24,6 +24,12 @@
             "passageiros": [
                 "clara@gmail.com"
             ]
+        },
+        {
+            "origem": "Guará",
+            "data": "05/12",
+            "horario": "12:00",
+            "passageiros": []
         }
     ]
 }
