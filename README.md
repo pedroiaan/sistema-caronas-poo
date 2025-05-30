@@ -34,6 +34,8 @@ projeto-caronas/
 ├── README.md                # Arquivo de documentação
 └── models/
     ├── sistemacaronas.py    # Lógica principal do sistema de caronas
+    ├── usuario.py  
+    ├── mixins.py  
     └── carona.py            # Classe que representa uma carona
 └── banco/
      ├──  banc.py            # Manipulação do arquivo JSON (carregamento e salvamento)
